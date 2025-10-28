@@ -1,0 +1,23 @@
+{
+  "name": "carolina-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "imagekit": "^6.0.0",
+    "mongoose": "^8.19.2",
+    "multer": "^2.0.2",
+    "nodemon": "^3.1.10"
+  }
+}
