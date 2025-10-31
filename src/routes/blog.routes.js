@@ -8,16 +8,15 @@ import {
   uploadImage,
 } from "../controllers/blog.controller.js";
 import upload from "../middlewares/upload.js";
+import { verifyToken } from "../middlewares/auth.js";
 
 const router = express.Router();
 
-router.get("/", getBlogs);
+router.get("/", verifyToken, getBlogs);
 router.get("/:id", getBlogById);
-router.post("/", upload.single("image"), createBlog);
-router.put("/:id", updateBlog);
-router.delete("/:id", deleteBlog);
-router.post("/file", upload.single("image"), uploadImage);
-
-
+router.post("/", verifyToken, upload.single("image"), createBlog);
+router.put("/:id", verifyToken, updateBlog);
+router.delete("/:id", verifyToken, deleteBlog);
+router.post("/file", verifyToken, upload.single("image"), uploadImage);
 
 export default router;
