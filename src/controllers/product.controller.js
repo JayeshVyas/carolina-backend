@@ -7,7 +7,7 @@ export const getProducts = async (req, res) => {
 };
 
 export const getProductById = async (req, res) => {
-  const product = await Product.findOne({ id: req.params.id });
+  const product = await Product.findOne({ _id: req.params.id });
   if (!product) return res.status(404).json({ message: "Product not found" });
   res.json(product);
 };
@@ -17,15 +17,16 @@ export const createProduct = async (req, res) => {
     let imageUrl = "";
 
     // If an image file is uploaded, send to ImageKit
-    if (req.image) {
+    if (req.file) {
       const uploadResponse = await imagekit.upload({
-        file: req.image.buffer.toString("base64"),
-        fileName: req.image.originalname,
+        file: req.file.buffer.toString("base64"),
+        fileName: req.file.originalname,
         folder: "products",
       });
       imageUrl = uploadResponse.url;
     }
 
+    console.log(imageUrl, "immmfsdf")
     const newProduct = await Product.create({
       ...req.body,
       image: imageUrl || "",
@@ -42,11 +43,11 @@ export const createProduct = async (req, res) => {
 };
 
 export const updateProduct = async (req, res) => {
-  const product = await Product.findOneAndUpdate({ id: req.params.id }, req.body, { new: true });
+  const product = await Product.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
   res.json(product);
 };
 
 export const deleteProduct = async (req, res) => {
-  await Product.findOneAndDelete({ id: req.params.id });
+  await Product.findOneAndDelete({ _id: req.params.id });
   res.json({ message: "Product deleted" });
 };
