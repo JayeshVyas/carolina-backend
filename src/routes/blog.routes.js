@@ -12,7 +12,7 @@ import { verifyToken } from "../middlewares/auth.js";
 
 const router = express.Router();
 
-router.get("/", verifyToken, getBlogs);
+router.get("/", getBlogs);
 router.get("/:id", getBlogById);
 router.post("/", verifyToken, upload.single("image"), createBlog);
 router.put("/:id", verifyToken, updateBlog);

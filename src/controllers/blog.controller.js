@@ -1,5 +1,5 @@
 import Blog from "../models/blog.model.js";
-import imagekit from "../config/imagekit.js"; // assuming you have configured this
+import imagekit from "../config/imagekit.js";
 
 // Fetch all blogs
 export const getBlogs = async (req, res) => {
@@ -15,7 +15,7 @@ export const getBlogs = async (req, res) => {
 // Fetch single blog by id (slug)
 export const getBlogById = async (req, res) => {
   try {
-    const blog = await Blog.findOne({ id: req.params.id });
+    const blog = await Blog.findOne({ _id: req.params.id });
     if (!blog) return res.status(404).json({ message: "Blog not found" });
     res.status(200).json(blog);
   } catch (error) {
@@ -38,7 +38,7 @@ export const createBlog = async (req, res) => {
 // Update blog
 export const updateBlog = async (req, res) => {
   try {
-    const blog = await Blog.findOneAndUpdate({ id: req.params.id }, req.body, {
+    const blog = await Blog.findOneAndUpdate({ _id: req.params.id }, req.body, {
       new: true,
     });
 
@@ -54,7 +54,7 @@ export const updateBlog = async (req, res) => {
 // Delete blog
 export const deleteBlog = async (req, res) => {
   try {
-    const deletedBlog = await Blog.findOneAndDelete({ id: req.params.id });
+    const deletedBlog = await Blog.findOneAndDelete({ _id: req.params.id });
 
     if (!deletedBlog) return res.status(404).json({ message: "Blog not found" });
 

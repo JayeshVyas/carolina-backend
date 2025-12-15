@@ -11,8 +11,8 @@ import { verifyToken } from "../middlewares/auth.js";
 
 const router = express.Router();
 
-router.get("/", verifyToken, getProducts);
-router.get("/:id", verifyToken, getProductById);
+router.get("/", getProducts);
+router.get("/:id", getProductById);
 router.post("/", verifyToken, upload.single("image"), createProduct);
 router.put("/:id", verifyToken, updateProduct);
 router.delete("/:id", verifyToken, deleteProduct);
