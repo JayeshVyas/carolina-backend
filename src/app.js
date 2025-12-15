@@ -7,6 +7,7 @@ import authRoutes from "./routes/auth.routes.js";
 import contactMessage from "./routes/contact.routes.js";
 import dealerInquiryRoutes from "./routes/dealerInquiry.routes.js";
 import quote from "./routes/quote.routes.js";
+import news from "./routes/news.routes.js";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use("/api/dealer-inquiry", dealerInquiryRoutes);
 app.use("/api/blogs", blogRoutes);
+app.use("/api/news", news);
 app.use("/api/products", productRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/contact", contactMessage);
