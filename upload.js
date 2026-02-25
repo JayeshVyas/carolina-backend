@@ -1,9 +1,6 @@
 import ImageKit from "imagekit";
 
-
 const API_URL = "http://localhost:6387/api/blog";
-const TOKEN =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWRlYzE2YTgzNDQxNzU0MWZhYzM5ZiIsImlhdCI6MTc3MjA0OTc5MSwiZXhwIjoxNzcyNjU0NTkxfQ.2iCYVbqmhacCsZ_9orSmG1WGyYXQtI3l2DA4p8nkQkI";
 
 const blogs = [
   {
@@ -168,9 +165,9 @@ const blogs = [
 ================================= */
 
 const imagekit = new ImageKit({
-  publicKey: 'public_a+SNUMGUrPc728V6jg1N49JmBRg=',
-  privateKey: 'private_/BhmJCLdJyt7km13ZK783Tjvq94=',
-  urlEndpoint: 'https://ik.imagekit.io/cciimagestore',
+  publicKey: '',
+  privateKey: '',
+  urlEndpoint: '',
 });
 
 /* ===============================
