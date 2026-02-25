@@ -21,7 +21,6 @@ app.use("/api/news", news);
 app.use("/api/products", productRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/contact", contactMessage);
-app.use("/api/auth", authRoutes);
 app.use("/api/quote", quote);
 
 export default app;

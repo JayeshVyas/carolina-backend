@@ -1,7 +1,8 @@
 import express from "express";
 import rateLimit from "express-rate-limit"
 import { validateQuoteRequest } from "../middlewares/validate.js"
-import { createQuoteRequest, getQuoteRequests } from "../controllers/quote.controller.js"
+import { createQuoteRequest, deleteQuoteRequest, getQuoteRequests } from "../controllers/quote.controller.js"
+import { verifyToken } from "../middlewares/auth.js";
 
 const router = express.Router();
 
@@ -16,6 +17,9 @@ const quoteLimiter = rateLimit({
 router.post("/", quoteLimiter, validateQuoteRequest, createQuoteRequest);
 
 // optional admin list
-router.get("/", getQuoteRequests);
+router.get("/",verifyToken, getQuoteRequests);
+
+router.delete("/:id",verifyToken, deleteQuoteRequest);
+
 
 export default router;

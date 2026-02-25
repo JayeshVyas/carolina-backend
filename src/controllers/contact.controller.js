@@ -46,3 +46,16 @@ export const getContacts = asyncHandler(async (req, res) => {
     },
   });
 });
+
+export const deleteContactMessage = async (req, res) => {
+  try {
+    const deletedContactMessage = await ContactMessage.findOneAndDelete({ _id: req.params.id });
+
+    if (!deletedContactMessage) return res.status(404).json({ message: "ContactMessage not found" });
+
+    res.status(200).json({ message: "ContactMessage deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting blog:", error);
+    res.status(500).json({ message: "Failed to delete blog", error: error.message });
+  }
+};

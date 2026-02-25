@@ -53,3 +53,16 @@ export const getDealerInquiries = asyncHandler(async (req, res) => {
     },
   });
 });
+
+export const deleteDealerInquiry = async (req, res) => {
+  try {
+    const deletedDealerInquiry = await DealerInquiry.findOneAndDelete({ _id: req.params.id });
+
+    if (!deletedDealerInquiry) return res.status(404).json({ message: "DealerInquiry not found" });
+
+    res.status(200).json({ message: "DealerInquiry deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting blog:", error);
+    res.status(500).json({ message: "Failed to delete blog", error: error.message });
+  }
+};

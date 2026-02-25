@@ -1,7 +1,8 @@
 import express from "express";
 import rateLimit from "express-rate-limit";
-import { createContact, getContacts } from "../controllers/contact.controller.js";
+import { createContact, deleteContactMessage, getContacts } from "../controllers/contact.controller.js";
 import { validateContactPayload } from "../middlewares/validate.js";
+import { verifyToken } from "../middlewares/auth.js";
 
 const router = express.Router();
 
@@ -17,6 +18,8 @@ const contactLimiter = rateLimit({
 router.post("/", contactLimiter, validateContactPayload, createContact);
 
 // Optional admin listing endpoint
-router.get("/", getContacts);
+router.get("/",verifyToken, getContacts);
+
+router.delete("/:id",verifyToken, deleteContactMessage);
 
 export default router;

@@ -24,9 +24,10 @@ export const createProduct = async (req, res) => {
         folder: "products",
       });
       imageUrl = uploadResponse.url;
+    }else if(req.body.image){
+      imageUrl = req.body.image;
     }
 
-    console.log(imageUrl, "immmfsdf")
     const newProduct = await Product.create({
       ...req.body,
       image: imageUrl || "",

@@ -3,8 +3,10 @@ import rateLimit from "express-rate-limit"
 import { validateDealerInquiry }  from "../middlewares/validate.js"
 import {
   createDealerInquiry,
+  deleteDealerInquiry,
   getDealerInquiries,
 } from "../controllers/dealerInquiry.controller.js"
+import { verifyToken } from "../middlewares/auth.js";
 
 const router = express.Router();
 
@@ -18,6 +20,9 @@ const dealerLimiter = rateLimit({
 
 router.post("/", dealerLimiter, validateDealerInquiry, createDealerInquiry);
 
-router.get("/", getDealerInquiries);
+router.get("/",verifyToken, getDealerInquiries);
+
+router.delete("/:id",verifyToken, deleteDealerInquiry);
+
 
 export default router;
